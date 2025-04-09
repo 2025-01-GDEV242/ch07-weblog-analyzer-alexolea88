@@ -123,4 +123,25 @@ public class LogAnalyzer
         }
         return quietest;
     }
+    
+    /**
+     * Return the starting hour of the busiest two-hour period.
+     * Analyze the hourly counts to find the two-hour period with the most combined accesses.
+     * If multiple periods tie, return the earliest starting hour.
+     * 
+     * @return The first hour (0-22) of the busiest two-hour period.
+     */
+    public int busiestTwoHour()
+    {
+        int busiestStart = 0;
+        int maxCount = hourCounts[0] + hourCounts[1]; // Initial period: 0-2am
+        for(int hour = 1; hour < hourCounts.length - 1; hour++) {
+            int currentCount = hourCounts[hour] + hourCounts[hour + 1];
+            if(currentCount > maxCount) {
+                maxCount = currentCount;
+                busiestStart = hour;
+            }
+        }
+        return busiestStart;
+    }
 }
