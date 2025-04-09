@@ -87,4 +87,40 @@ public class LogAnalyzer
         }
         return total;
     }
+    
+    /**
+     * Return the hour with the highest number of accesses.
+     * Analyze the hourly counts to determine which hour (0-23) had the most activity.
+     * If multiple hours tie, return the earliest.
+     * 
+     * @return The hour (0-23) with the most accesses.
+     */
+    public int busiestHour()
+    {
+        int busiest = 0;
+        for(int hour = 1; hour < hourCounts.length; hour++) {
+            if(hourCounts[hour] > hourCounts[busiest]) {
+                busiest = hour;
+            }
+        }
+        return busiest;
+    }
+    
+    /**
+     * Return the hour with the lowest number of accesses.
+     * Analyze the hourly counts to determine which hour (0-23) had the least activity.
+     * If multiple hours tie, return the earliest.
+     * 
+     * @return The hour (0-23) with the fewest accesses.
+     */
+    public int quietestHour()
+    {
+        int quietest = 0;
+        for(int hour = 1; hour < hourCounts.length; hour++) {
+            if(hourCounts[hour] < hourCounts[quietest]) {
+                quietest = hour;
+            }
+        }
+        return quietest;
+    }
 }
